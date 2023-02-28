@@ -139,3 +139,6 @@ datasets
 
 # experiments
 .ipynb
+
+# PyCharm
+.idea
