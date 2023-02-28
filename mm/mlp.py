@@ -1,9 +1,10 @@
-from mm import Layer_Input
+from mm import LayerInput
 import numpy as np
+
 
 class MLP:
     def __init__(self) -> None:
-        self.layers = [Layer_Input()]
+        self.layers = [LayerInput()]
 
     def add(self, layer) -> None:
         assert hasattr(layer, "forward")
@@ -11,8 +12,8 @@ class MLP:
 
         self.layers.append(layer)
 
-    def forward(self, input: np.ndarray) -> None:
-        self.layers[0].forward(input)
+    def forward(self, inputs: np.ndarray) -> np.ndarray:
+        self.layers[0].forward(inputs)
 
         prev = self.layers[0]
         for layer in self.layers[1:]:

@@ -1,13 +1,14 @@
 import numpy as np
 
 
-class Layer_Dense:
+class LayerDense:
     def __init__(self, n_inputs: int, n_outputs: int) -> None:
         self._weights = np.ones((n_inputs, n_outputs))
-        self._bias = np.zeros((n_outputs))
+        self._bias = np.zeros(n_outputs)
+        self._output = None
 
-    def forward(self, input: np.ndarray) -> None:
-        self._output = input @ self._weights + self._bias
+    def forward(self, inputs: np.ndarray) -> None:
+        self._output = inputs @ self._weights + self._bias
 
     @property
     def weights(self):

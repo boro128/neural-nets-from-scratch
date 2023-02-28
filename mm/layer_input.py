@@ -1,6 +1,9 @@
 import numpy as np
 
 
-class Layer_Input:
-    def forward(self, input: np.ndarray):
-        self.output = input
+class LayerInput:
+    def __init__(self):
+        self.output = None
+
+    def forward(self, inputs: np.ndarray):
+        self.output = inputs

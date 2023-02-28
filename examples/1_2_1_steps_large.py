@@ -14,11 +14,11 @@ y = df_test["y"].values
 
 model = mm.MLP()
 
-layer1 = mm.Layer_Dense(1, 5)
+layer1 = mm.LayerDense(1, 5)
 layer1.weights = np.array([[-213.6800, -92.7280, 168.5175, -177.1530, -226.7014]])
 layer1.bias = np.array([-106.9620, 45.5648, -254.1388, 88.0355, -113.4121])
 
-layer2 = mm.Layer_Dense(5, 5)
+layer2 = mm.LayerDense(5, 5)
 layer2.weights = np.array(
     [
         [-2.5420, -3.0759, -18.7080, 32.8780, -2.2470],
@@ -30,7 +30,7 @@ layer2.weights = np.array(
 )
 layer2.bias = np.array([-29.9995, 10.8776, 8.8823, -14.7422, -7.5004])
 
-layer3 = mm.Layer_Dense(5, 1)
+layer3 = mm.LayerDense(5, 1)
 layer3.weights = np.array([[32.6226], [41.4524], [38.7555], [-79.7586], [47.5424]])
 layer3.bias = np.array([-0.0759])
 
@@ -49,7 +49,7 @@ print(f"two hidden layers, 5 neurons each, mse: {mse}")
 
 model = mm.MLP()
 
-layer1 = mm.Layer_Dense(1, 10)
+layer1 = mm.LayerDense(1, 10)
 layer1.weights = np.array(
     [
         [
@@ -81,7 +81,7 @@ layer1.bias = np.array(
     ]
 )
 
-layer2 = mm.Layer_Dense(10, 1)
+layer2 = mm.LayerDense(10, 1)
 layer2.weights = np.array(
     [
         [48.358549],
@@ -111,11 +111,11 @@ print(f"one hidden layer, 10 neurons, mse: {mse}")
 
 model = mm.MLP()
 
-layer1 = mm.Layer_Dense(1, 5)
+layer1 = mm.LayerDense(1, 5)
 layer1.weights = np.array([[131.7981, 95.4253, 70.8011, 89.6914, 104.9499]])
 layer1.bias = np.array([65.7796, -47.5908, -106.3184, -134.6479, -52.3460])
 
-layer2 = mm.Layer_Dense(5, 1)
+layer2 = mm.LayerDense(5, 1)
 layer2.weights = np.array([[80.0541], [35.3729], [33.2226], [47.4418], [44.7309]])
 layer2.bias = np.array([-80.1959])
 
