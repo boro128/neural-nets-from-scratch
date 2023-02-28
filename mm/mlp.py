@@ -6,11 +6,14 @@ class MLP:
         self.layers = [Layer_Input()]
 
     def add(self, layer) -> None:
+        assert hasattr(layer, "forward")
+        assert callable(layer.forward)
+        
         self.layers.append(layer)
 
     def forward(self, input) -> None:
         self.layers[0].forward(input)
-        
+
         prev = self.layers[0]
         for layer in self.layers[1:]:
             layer.forward(prev.output)
