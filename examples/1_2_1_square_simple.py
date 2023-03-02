@@ -130,3 +130,8 @@ out = model.forward(X).squeeze()
 
 mse = np.mean(np.square(out - y))
 print(f"one hidden layer, 5 neurons, mse: {mse}")
+
+# output:
+# two hidden layers, 5 neurons each, mse: 6.468606025748715
+# one hidden layer, 10 neurons, mse: 5.3504247589792575
+# one hidden layer, 5 neurons, mse: 85.91559993273117
