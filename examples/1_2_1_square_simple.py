@@ -11,7 +11,7 @@ y = df_test["y"].values
 
 # two hidden layers, 5 neurons each
 
-model = mm.MLP()
+model = mm.Model()
 
 layer1 = mm.LayerDense(1, 5)
 layer1.weights = np.array([[4.1357784, -4.966116, 6.4464865, -7.9883747, 5.592756]])
@@ -48,7 +48,7 @@ print(f"two hidden layers, 5 neurons each, mse: {mse}")
 
 # one hidden layer, 10 neurons
 
-model = mm.MLP()
+model = mm.Model()
 
 layer1 = mm.LayerDense(1, 10)
 layer1.weights = np.array(
@@ -110,7 +110,7 @@ print(f"one hidden layer, 10 neurons, mse: {mse}")
 
 # one hidden layer, 5 neurons
 
-model = mm.MLP()
+model = mm.Model()
 
 layer1 = mm.LayerDense(1, 5)
 layer1.weights = np.array([[-8.54567, -11.664024, -13.445912, -19.833573, -8.429798]])
