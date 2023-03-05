@@ -16,12 +16,12 @@ class LayerDense:
         self._dinputs = None
 
     def forward(self, inputs: np.ndarray) -> None:
-        self._inputs
+        self._inputs = inputs
         self._output = inputs @ self._weights + self._bias
 
     def backward(self, dvalues: np.ndarray) -> None:
         self._dweights = self._inputs.T @ dvalues
-        self._dbias = np.sum(dvalues)
+        self._dbias = np.sum(dvalues, axis=0)
         self._dinputs = dvalues @ self._weights.T
 
     # TODO
@@ -62,6 +62,14 @@ class LayerDense:
     @property
     def output(self):
         return self._output
+
+    @property
+    def dweights(self):
+        return self._dweights
+
+    @property
+    def dbias(self):
+        return self._dbias
 
     @weights.setter
     def weights(self, weights: np.ndarray):
