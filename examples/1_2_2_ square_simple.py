@@ -64,7 +64,7 @@ execute(batch_size=10, n_epochs=20_000, print_every=5000)
 # batch_size=whole dataset
 execute(batch_size=None, n_epochs=200_000, print_every=50_000)
 
-# output;
+# output:
 # epoch: 1000  loss: 0.0007435554765755554
 # epoch: 2000  loss: 0.0003916476501218075
 # epoch: 3000  loss: 0.0002364691620495575
