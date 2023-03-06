@@ -24,13 +24,16 @@ class LayerDense:
         self._dbias = np.sum(dvalues, axis=0)
         self._dinputs = dvalues @ self._weights.T
 
-    # TODO
-    def init_weights_uniform(self, a=0, b=1):
-        self._weights = np.random.uniform(a, b, (self._n_inputs, self._n_outputs))
+    def init_weights_uniform(self, a=0, b=1, rng: np.random.Generator = None):
+        if rng is None:
+            rng = np.random.default_rng()
+        self._weights = rng.uniform(a, b, (self._n_inputs, self._n_outputs))
 
-    def init_weights_xavier(self):
+    def init_weights_xavier(self, rng: np.random.Generator = None):
+        if rng is None:
+            rng = np.random.default_rng()
         a = np.sqrt(6) / np.sqrt(self._n_inputs + self._n_outputs)
-        self._weights = np.random.uniform(-a, a, (self._n_inputs, self._n_outputs))
+        self._weights = rng.uniform(-a, a, (self._n_inputs, self._n_outputs))
 
     def visualize(self, ax=None, title=None, cbar=False) -> None:
         if ax is None:

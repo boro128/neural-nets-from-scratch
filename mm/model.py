@@ -40,7 +40,13 @@ class Model:
         return self._layers[-1].output
 
     def train(
-        self, X: np.ndarray, y: np.ndarray, n_epochs: int = 1, batch_size: int = None
+        self,
+        X: np.ndarray,
+        y: np.ndarray,
+        n_epochs: int = 1,
+        batch_size: int = None,
+        verbose: bool = True,
+        print_every: int = 1,
     ):
         assert len(X) == len(y)
         n_instances = len(X)
@@ -50,7 +56,7 @@ class Model:
 
         self._optimizer.set_params(self._trainable_layers)
 
-        for epoch_num in range(n_epochs):
+        for epoch_num in range(1, n_epochs + 1):
 
             losses_epoch = []
 
@@ -78,7 +84,16 @@ class Model:
                 # parameters update
                 self._optimizer.step()
 
-            print(f"epoch: {epoch_num}  loss: {np.mean(losses_epoch)}")
+            if verbose and epoch_num % print_every == 0:
+                print(f"epoch: {epoch_num}  loss: {np.mean(losses_epoch)}")
+
+    def init_weights_uniform(self, a=0, b=1):
+        for layer in self._trainable_layers:
+            layer.init_weights_uniform(a, b, self._rng)
+
+    def init_weights_xavier(self):
+        for layer in self._trainable_layers:
+            layer.init_weights_xavier(self._rng)
 
     def draw_weights(self) -> None:
         layers_dense = []
