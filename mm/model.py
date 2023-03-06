@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 
 class Model:
     def __init__(self) -> None:
+        self._optimizer = None
+        self._loss = None
         self._layers = [LayerInput()]
         self._trainable_layers = []
         self._rng = np.random.default_rng(seed=123)

@@ -6,6 +6,7 @@ from mm import LayerDense
 
 class SGD:
     def __init__(self, lr: float = 0.01) -> None:
+        self._params = None
         self._lr = lr
 
     def set_params(self, params: List[LayerDense]) -> None:
