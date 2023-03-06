@@ -7,8 +7,8 @@ class StandardScaler:
         self._std = None
 
     def fit(self, inputs: np.ndarray) -> None:
-        self._mean = np.mean(inputs)
-        self._std = np.std(inputs)
+        self._mean = np.mean(inputs, axis=0)
+        self._std = np.std(inputs, axis=0)
 
     def transform(self, inputs: np.ndarray) -> np.ndarray:
         return (inputs - self._mean) / self._std
@@ -16,3 +16,6 @@ class StandardScaler:
     def fit_transform(self, inputs: np.ndarray) -> np.ndarray:
         self.fit(inputs)
         return self.transform(inputs)
+
+    def reverse_transform(self, inputs: np.ndarray) -> np.ndarray:
+        return inputs * self._std + self._mean

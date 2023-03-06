@@ -17,3 +17,7 @@ class Sigmoid:
     @property
     def output(self):
         return self._output
+
+    @property
+    def dinputs(self):
+        return self._dinputs

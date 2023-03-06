@@ -71,6 +71,10 @@ class LayerDense:
     def dbias(self):
         return self._dbias
 
+    @property
+    def dinputs(self):
+        return self._dinputs
+
     @weights.setter
     def weights(self, weights: np.ndarray):
         assert weights.shape == self._weights.shape
