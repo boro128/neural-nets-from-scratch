@@ -47,7 +47,7 @@ class Model:
         batch_size: int = None,
         verbose: bool = True,
         print_every: int = 1,
-    ):
+    ) -> None:
         assert len(X) == len(y)
         n_instances = len(X)
 
@@ -87,11 +87,11 @@ class Model:
             if verbose and epoch_num % print_every == 0:
                 print(f"epoch: {epoch_num}  loss: {np.mean(losses_epoch)}")
 
-    def init_weights_uniform(self, a=0, b=1):
+    def init_weights_uniform(self, a=0, b=1) -> None:
         for layer in self._trainable_layers:
             layer.init_weights_uniform(a, b, self._rng)
 
-    def init_weights_xavier(self):
+    def init_weights_xavier(self) -> None:
         for layer in self._trainable_layers:
             layer.init_weights_xavier(self._rng)
 
