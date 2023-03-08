@@ -40,7 +40,7 @@ class LayerDense:
             _, ax = plt.subplots()
 
         data = np.column_stack((self._weights.T, self._bias))
-        sns.heatmap(data, ax=ax, cmap="seismic", vmin=-100, vmax=100, cbar=cbar)
+        sns.heatmap(data, ax=ax, cmap="seismic", vmin=-20, vmax=20, cbar=cbar)
         ax.set_title(title)
 
         if ax is None:
