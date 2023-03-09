@@ -2,6 +2,8 @@ from context import mm
 
 import numpy as np
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 df_train = pd.read_csv("datasets/regression/steps-small-training.csv", index_col=0)
 df_test = pd.read_csv("datasets/regression/steps-small-test.csv", index_col=0)
@@ -61,9 +63,15 @@ def execute(batch_size, n_epochs, print_every=1000, draw_weights=False):
 # batch_size=10
 execute(batch_size=10, n_epochs=50_000, print_every=5000)
 
-# two hidden layers, 5 neurons each
-# batch_size=whole dataset
-# execute(batch_size=None, n_epochs=200_000, print_every=50_000)
+df_train = pd.read_csv("datasets/regression/steps-small-training.csv", index_col=0)
+df_test = pd.read_csv("datasets/regression/steps-small-test.csv", index_col=0)
+
+sns.scatterplot(df_train, x="x", y="y")
+sns.scatterplot(df_test, x="x", y="y")
+plt.show()
+
+# na wykresie, przy pierwszym skoku widać, że zbiór testowy rozbiega się z treningowym
+# dla x=-0.5, train wrzuca tę obserwację do pierwszego "schodka", a test do drugiego
 
 # output:
 # epoch: 5000  loss: 0.057904806131174644
