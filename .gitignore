@@ -137,8 +137,8 @@ dmypy.json
 # datasets
 datasets
 
-# experiments
-.ipynb
+# experiments (jupyter notebooks)
+*.ipynb
 
 # PyCharm
 .idea
