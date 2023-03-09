@@ -45,8 +45,7 @@ class Model:
         y: np.ndarray,
         n_epochs: int = 1,
         batch_size: int = None,
-        verbose: bool = True,
-        print_every: int = 1,
+        print_every: int = None,
     ) -> None:
         assert len(X) == len(y)
         n_instances = len(X)
@@ -84,7 +83,7 @@ class Model:
                 # parameters update
                 self._optimizer.step()
 
-            if verbose and epoch_num % print_every == 0:
+            if print_every is not None and epoch_num % print_every == 0:
                 print(f"epoch: {epoch_num}  loss: {np.mean(losses_epoch)}")
 
     def init_weights_uniform(self, a=0, b=1) -> None:
