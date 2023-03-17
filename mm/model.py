@@ -1,5 +1,5 @@
 from mm import LayerInput, LayerDense
-from mm.optim import SGD
+from mm.optim import Optimizer
 from mm.loss import MSELoss
 
 import numpy as np
@@ -26,7 +26,7 @@ class Model:
     def set_loss(self, loss: MSELoss) -> None:
         self._loss = loss
 
-    def set_optimizer(self, optimizer: SGD) -> None:
+    def set_optimizer(self, optimizer: Optimizer) -> None:
         self._optimizer = optimizer
 
     def forward(self, inputs: np.ndarray) -> np.ndarray:

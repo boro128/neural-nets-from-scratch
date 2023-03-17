@@ -1,17 +1,17 @@
-from typing import List
-
-from mm import LayerDense
+from .optimizer import Optimizer
 
 
-class SGD:
-    def __init__(self, lr: float = 0.01) -> None:
+class SGD(Optimizer):
+    def __init__(self, lr: float = 0.01, momentum_coeff: float = .0) -> None:
+        super().__init__(lr)
         self._params = None
-        self._lr = lr
 
-    def set_params(self, params: List[LayerDense]) -> None:
-        self._params = params
+        assert 0 <= momentum_coeff < 1
+        self._momentum_coeff = momentum_coeff
 
     def step(self) -> None:
         for param in self._params:
-            param.weights -= self._lr * param.dweights
-            param.bias -= self._lr * param.dbias
+            param.momentum_weights = param.dweights + self._momentum_coeff * param.momentum_weights
+            param.momentum_bias = param.dbias + self._momentum_coeff * param.momentum_bias
+            param.weights -= self._lr * param.momentum_weights
+            param.bias -= self._lr * param.momentum_bias

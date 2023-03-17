@@ -1,1 +1,3 @@
-from mm.optim.sgd import SGD
+from .sgd import SGD
+from .optimizer import Optimizer
+from .rmsprop import RMSprop
