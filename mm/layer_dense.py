@@ -14,8 +14,10 @@ class LayerDense:
         self._dweights = None
         self._dbias = None
         self._dinputs = None
-        self._momentum_weights = np.zeros((n_inputs, n_outputs))
-        self._momentum_bias = np.zeros(n_outputs)
+        self._momentum_weights = np.zeros_like(self._weights)
+        self._momentum_bias = np.zeros_like(self._bias)
+        self._v_weights = np.zeros_like(self._weights)
+        self._v_bias = np.zeros_like(self._bias)
 
     def forward(self, inputs: np.ndarray) -> None:
         self._inputs = inputs
@@ -88,6 +90,14 @@ class LayerDense:
     def momentum_bias(self):
         return self._momentum_bias
 
+    @property
+    def v_weights(self):
+        return self._v_weights
+
+    @property
+    def v_bias(self):
+        return self._v_bias
+
     @weights.setter
     def weights(self, weights: np.ndarray):
         assert weights.shape == self._weights.shape
@@ -107,3 +117,13 @@ class LayerDense:
     def momentum_bias(self, momentum_bias: np.ndarray):
         assert momentum_bias.shape == self._momentum_bias.shape
         self._momentum_bias = momentum_bias
+
+    @v_weights.setter
+    def v_weights(self, v_weights: np.ndarray):
+        assert v_weights.shape == self._v_weights.shape
+        self._v_weights = v_weights
+
+    @v_bias.setter
+    def v_bias(self, v_bias: np.ndarray):
+        assert v_bias.shape == self._v_bias.shape
+        self._v_bias = v_bias
