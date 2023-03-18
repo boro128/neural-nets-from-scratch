@@ -15,3 +15,6 @@ class RMSprop(Optimizer):
             param.v_bias = self._beta * param.v_bias + (1 - self._beta) * np.square(param.dbias)
             param.weights -= self._lr * (param.dweights / (np.sqrt(param.v_weights) + self._eps))
             param.bias -= self._lr * (param.dbias / (np.sqrt(param.v_bias) + self._eps))
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(lr={self._lr}, beta={self._beta}, eps={self._eps})"
