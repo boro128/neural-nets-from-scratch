@@ -4,6 +4,10 @@ from mm.loss import MSELoss
 
 import numpy as np
 import matplotlib.pyplot as plt
+import copy
+import pickle
+import pathlib
+from datetime import datetime
 
 
 class Model:
@@ -13,6 +17,7 @@ class Model:
         self._layers = [LayerInput()]
         self._trainable_layers = []
         self._rng = np.random.default_rng(seed=123)
+        self._curr_epoch = 1
 
     def add(self, layer) -> None:
         assert hasattr(layer, "forward")
@@ -55,7 +60,7 @@ class Model:
 
         self._optimizer.set_params(self._trainable_layers)
 
-        for epoch_num in range(1, n_epochs + 1):
+        for epoch in range(self._curr_epoch, n_epochs + 1):
 
             losses_epoch = []
 
@@ -83,8 +88,8 @@ class Model:
                 # parameters update
                 self._optimizer.step()
 
-            if print_every is not None and epoch_num % print_every == 0:
-                print(f"epoch: {epoch_num}  loss: {np.mean(losses_epoch)}")
+            if print_every is not None and epoch % print_every == 0:
+                print(f"epoch: {epoch}  loss: {np.mean(losses_epoch)}")
 
     def init_weights_uniform(self, a=0, b=1) -> None:
         for layer in self._trainable_layers:
@@ -107,6 +112,30 @@ class Model:
             )
         fig.suptitle("Weights Visualization (last column is bias)")
         plt.show()
+
+    def save(self, directory: str = None, filename: str = None) -> None:
+        model = copy.deepcopy(self)
+
+        if directory is None:
+            path = pathlib.Path.cwd().joinpath("models")
+            path.mkdir(exist_ok=True)
+        else:
+            path = pathlib.Path(directory)
+
+        if filename is None:
+            filename = f'{datetime.now().strftime(r"%Y%m%d-%H%M%S")}.mmodel'
+
+        path = path.joinpath(filename)
+
+        with open(path, "wb") as f:
+            pickle.dump(model, f)
+
+    @staticmethod
+    def load(path) -> "Model":
+        with open(path, "rb") as f:
+            model = pickle.load(f)
+
+        return model
 
     @property
     def layers(self):

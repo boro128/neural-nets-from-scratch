@@ -142,3 +142,6 @@ datasets
 
 # PyCharm
 .idea
+
+# saved models
+*.mmodel
