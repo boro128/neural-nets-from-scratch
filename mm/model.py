@@ -17,7 +17,7 @@ class Model:
         self._layers = [LayerInput()]
         self._trainable_layers = []
         self._rng = np.random.default_rng(seed=123)
-        self._curr_epoch = 1
+        self._curr_epoch = 0
 
     def add(self, layer) -> None:
         assert hasattr(layer, "forward")
@@ -60,8 +60,9 @@ class Model:
 
         self._optimizer.set_params(self._trainable_layers)
 
-        for epoch in range(self._curr_epoch, n_epochs + 1):
-
+        for _ in range(n_epochs):
+            
+            self._curr_epoch += 1
             losses_epoch = []
 
             # split data into batches
@@ -88,8 +89,8 @@ class Model:
                 # parameters update
                 self._optimizer.step()
 
-            if print_every is not None and epoch % print_every == 0:
-                print(f"epoch: {epoch}  loss: {np.mean(losses_epoch)}")
+            if print_every is not None and self._curr_epoch % print_every == 0:
+                print(f"epoch: {self._curr_epoch}  loss: {np.mean(losses_epoch)}")
 
     def init_weights_uniform(self, a=0, b=1) -> None:
         for layer in self._trainable_layers:
