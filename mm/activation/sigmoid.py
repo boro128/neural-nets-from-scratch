@@ -1,23 +1,12 @@
 import numpy as np
 
+from .activation import Activation
 
-class Sigmoid:
-    def __init__(self):
-        self._inputs = None
-        self._output = None
-        self._dinputs = None
 
+class Sigmoid(Activation):
     def forward(self, inputs: np.ndarray) -> None:
         self._inputs = inputs
         self._output = 1 / (1 + np.exp(-inputs))
 
     def backward(self, dvalues: np.ndarray) -> None:
         self._dinputs = dvalues * self._output * (1 - self._output)
-
-    @property
-    def output(self):
-        return self._output
-
-    @property
-    def dinputs(self):
-        return self._dinputs
