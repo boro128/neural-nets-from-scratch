@@ -1,4 +1,5 @@
-from mm import LayerInput, LayerDense
+from .layer_input import LayerInput
+from .layer_dense import LayerDense
 from mm.optim import Optimizer
 from mm.loss import MSELoss
 
@@ -61,7 +62,7 @@ class Model:
         self._optimizer.set_params(self._trainable_layers)
 
         for _ in range(n_epochs):
-            
+
             self._curr_epoch += 1
             losses_epoch = []
 

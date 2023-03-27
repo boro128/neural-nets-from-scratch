@@ -1,13 +1,9 @@
 import numpy as np
 
+from .loss import Loss
 
-class MSELoss:
-    def __init__(self) -> None:
-        self._dinputs = None
-        self._target = None
-        self._inputs = None
-        self._output = None
 
+class MSELoss(Loss):
     def calculate(self, inputs: np.ndarray, target: np.ndarray) -> np.ndarray:
         assert len(inputs) == len(target)
 
@@ -19,8 +15,3 @@ class MSELoss:
     def backward(self) -> None:
         n_instances = len(self._inputs)
         self._dinputs = 2 * (self._inputs - self._target) / n_instances
-
-    @property
-    def dinputs(self):
-        return self._dinputs
-    

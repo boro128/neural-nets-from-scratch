@@ -1,1 +1,1 @@
-from mm.activation.sigmoid import Sigmoid
+from .sigmoid import Sigmoid
