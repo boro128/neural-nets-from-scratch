@@ -1,8 +1,8 @@
-from mm.layer_input import LayerInput
-from mm.layer_dense import LayerDense
-from mm.model import Model
+from .layer_dense import LayerDense
+from .model import Model
 
-from mm import activation as activation
-from mm import loss as loss
-from mm import optim as optim
-from mm import preprocessing as preprocessing
+from . import activation
+from . import loss
+from . import optim
+from . import preprocessing
+from . import functional
