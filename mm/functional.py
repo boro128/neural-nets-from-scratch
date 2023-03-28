@@ -6,7 +6,7 @@ def softmax(inputs: np.ndarray) -> np.ndarray:
     return exp / np.sum(exp)
 
 
-def fscore(inputs: np.ndarray, target: np.ndarray, label: int) -> float:
+def fscore(inputs: np.ndarray, target: np.ndarray, label: int = 1) -> float:
     # Fscore = 2 * (precision * recall) / (precision + recall)
 
     tp = np.sum((target == label) & (inputs == label))
