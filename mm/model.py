@@ -49,9 +49,12 @@ class Model:
         self,
         X: np.ndarray,
         y: np.ndarray,
+        X_val: np.ndarray,
+        y_val: np.ndarray,
         n_epochs: int = 1,
         batch_size: int = None,
         print_every: int = None,
+        max_patience: int = 5,
     ) -> None:
         assert len(X) == len(y)
         n_instances = len(X)
@@ -60,6 +63,8 @@ class Model:
             batch_size = len(X)
 
         self._optimizer.set_params(self._trainable_layers)
+        val_losses = []
+        patience = 0
 
         for _ in range(n_epochs):
 
@@ -90,8 +95,22 @@ class Model:
                 # parameters update
                 self._optimizer.step()
 
+            # validation
+            val_output = self.forward(X_val)
+            val_loss = self._loss.calculate(val_output, y_val)
+            val_losses.append(val_loss)
+            if val_loss > val_losses[-1]:
+                patience += 1
+                if patience == max_patience:
+                    print(f"Validation loss started to increase -- Early Stopping")
+                    return
+            else:
+                patience = 0
+
             if print_every is not None and self._curr_epoch % print_every == 0:
-                print(f"epoch: {self._curr_epoch}  loss: {np.mean(losses_epoch)}")
+                print(
+                    f"epoch: {self._curr_epoch}  loss: {np.mean(losses_epoch)} val_loss: {val_loss}"
+                )
 
     def init_weights_uniform(self, a=0, b=1) -> None:
         for layer in self._trainable_layers:
