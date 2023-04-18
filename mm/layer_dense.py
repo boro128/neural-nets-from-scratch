@@ -108,6 +108,16 @@ class LayerDense:
         assert bias.shape == self._bias.shape
         self._bias = bias
 
+    @dweights.setter
+    def dweights(self, dweights: np.ndarray):
+        assert dweights.shape == self._dweights.shape
+        self._dweights = dweights
+
+    @dbias.setter
+    def dbias(self, dbias: np.ndarray):
+        assert dbias.shape == self._dbias.shape
+        self._dbias = dbias
+
     @momentum_weights.setter
     def momentum_weights(self, momentum_weights: np.ndarray):
         assert momentum_weights.shape == self._momentum_weights.shape
