@@ -26,4 +26,4 @@ class SGD(Optimizer):
             param.bias -= self._lr * param.momentum_bias
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(lr={self._lr}, momentum_coeff={self._momentum_coeff})"
+        return f"{self.__class__.__name__}(lr={self._lr}, momentum_coeff={self._momentum_coeff}, weight_decay={self._weight_decay})"
