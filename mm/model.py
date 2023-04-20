@@ -55,7 +55,7 @@ class Model:
         n_epochs: int = 1,
         batch_size: int = None,
         print_every: int = None,
-        max_patience: int = 7,
+        max_patience: int = 10,
     ) -> None:
         assert len(X) == len(y)
         n_instances = len(X)
@@ -105,7 +105,7 @@ class Model:
                 if len(val_losses) != 0 and val_loss > val_losses[-1]:
                     patience += 1
                     if patience == max_patience:
-                        print(f"Validation loss started to increase -- Early Stopping")
+                        print(f"Validation loss started to increase -- Early Stopping in epoch {self._curr_epoch}")
                         return
                 else:
                     patience = 0
