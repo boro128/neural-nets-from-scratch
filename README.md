@@ -1,3 +1,3 @@
-# mio
+# Neural Networks from Scratch
 
-https://pages.mini.pw.edu.pl/~karwowskij/mioad/lab-sieci.html
+This repository contains an implementation of neural networks written from scratch as part of the Computing Intelligence course at the Warsaw University of Technology, Faculty of Mathematics and Information Science.
