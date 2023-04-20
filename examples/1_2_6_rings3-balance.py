@@ -95,6 +95,17 @@ execute(
     print_every=2_000,
 )
 
+# both
+execute(
+    batch_size=32,
+    n_epochs=1_000_000,
+    optimizer=mm.optim.SGD(lr=3e-2, momentum_coeff=0.3, weight_decay=1e-6),
+    X_val=X_val,
+    y_val=y_val,
+    max_patience=6,
+    print_every=2_000,
+)
+
 ###################### Experiment notes ######################
 
 ########### Baseline ###########
@@ -114,6 +125,11 @@ execute(
 
 # Validation loss started to increase -- Early Stopping in epoch 8089
 # batch_size=32, n_epochs=1000000, optimizer=SGD(lr=0.03, momentum_coeff=0.3, weight_decay=0), f_score: 0.8053483499284599
+
+########### Both ###########
+
+# Validation loss started to increase -- Early Stopping in epoch 8089
+# batch_size=32, n_epochs=1000000, optimizer=SGD(lr=0.03, momentum_coeff=0.3, weight_decay=1e-06), f_score: 0.80196689103047
 
 ###################### Output ######################
 
@@ -135,3 +151,9 @@ execute(
 # epoch: 8000  loss: 0.045592575275530726 val_loss: 0.12543054837302078
 # Validation loss started to increase -- Early Stopping in epoch 8089
 # batch_size=32, n_epochs=1000000, optimizer=SGD(lr=0.03, momentum_coeff=0.3, weight_decay=0), f_score: 0.8053483499284599
+# epoch: 2000  loss: 0.10660722812469856 val_loss: 0.13334261641879938
+# epoch: 4000  loss: 0.06361902719746867 val_loss: 0.12415943187128685
+# epoch: 6000  loss: 0.05236553382325521 val_loss: 0.1268848817027058
+# epoch: 8000  loss: 0.045893313299844724 val_loss: 0.12474621810105281
+# Validation loss started to increase -- Early Stopping in epoch 8089
+# batch_size=32, n_epochs=1000000, optimizer=SGD(lr=0.03, momentum_coeff=0.3, weight_decay=1e-06), f_score: 0.80196689103047
